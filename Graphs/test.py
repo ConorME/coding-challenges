@@ -1,9 +1,39 @@
 import unittest
 from graph import Graph
+from bfs import bfs
+
+class TestBFS(unittest.TestCase):
+    def setUp(self):
+        self.graph = Graph(directed=False)
+        self.graph.add_edge('A', 'B')
+        self.graph.add_edge('A', 'C')
+        self.graph.add_edge('B', 'D')
+        self.graph.add_edge('C', 'E')
+        self.graph.add_edge('E', 'F')
+
+    def test_bfs_traversal(self):
+        result = bfs(self.graph.graph, 'A')
+        expected_output = ['A', 'B', 'C', 'D', 'E', 'F']
+        self.assertEqual(result, expected_output)
+
+    def test_bfs_disconnected_graph(self):
+        self.graph.add_node('G')  # Disconnected node
+        result = bfs(self.graph.graph, 'A')
+        self.assertNotIn('G', result)
+
+    def test_bfs_cycle(self):
+        self.graph.add_edge('E', 'A')
+        result = bfs(self.graph.graph, 'A')
+        expected_output = ['A', 'B', 'C', 'E', 'D', 'F']
+        self.assertEqual(result, expected_output)
+
+    
+    def test_bfs_start_nonexistent_node(self):
+        with self.assertRaises(KeyError):
+            bfs(self.graph.graph, 'Z')
 
 class TestGraph(unittest.TestCase):
     def setUp(self):
-        """Set up a fresh graph instance for each test."""
         self.graph = Graph(directed=False) 
         self.directed_graph = Graph(directed=True)
 
