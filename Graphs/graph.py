@@ -4,7 +4,7 @@ class Graph:
         self.directed = directed
 
     def add_node(self, node):
-        if node is not in self.graph:
+        if node not in self.graph:
             self.graph[node] = []
 
     def add_edge(self, head, tail):
