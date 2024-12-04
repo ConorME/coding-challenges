@@ -23,9 +23,8 @@ class TestHashTable(unittest.TestCase):
         self.assertTrue(self.ht.remove("key2"))
         self.assertIsNone(self.ht.get("key2"))
         self.assertFalse(self.ht.remove("key4"))
-
+    
     def test_collision_handling(self):
-        # Force a collision
         key1_index = self.ht._hash("key1")
         key4 = f"key1_collision_{key1_index}" 
         self.ht.insert(key4, "collision_value")

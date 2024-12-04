@@ -11,7 +11,7 @@ class HashTable:
         index = self._hash(key)
         bucket = self.table[index]
 
-        for i, (k, v) in bucket:
+        for i, (k, v) in enumerate(bucket):
             if k == key:
                 bucket[i] = (key, value)
                 return
@@ -31,7 +31,7 @@ class HashTable:
         index = self._hash(key)
         bucket = self.table[index]
 
-        for i, (k, v) in bucket:
+        for i, (k, v) in enumerate(bucket):
             if k == key:
                 del bucket[i]
                 return True
