@@ -1,5 +1,6 @@
 import time
 from quicksort import quicksort
+from selectionsort import selectionsort
 import random
 
 def benchmark(sorting_algorithms, test_data):
@@ -15,6 +16,7 @@ def benchmark(sorting_algorithms, test_data):
 if __name__ == "__main__":
     sorting_algorithms = [
         ("Quicksort", quicksort),
+        ("Selectionsort", selectionsort),
     ]
 
     test_data = [random.randint(0, 10000) for _ in range(1000)]  
