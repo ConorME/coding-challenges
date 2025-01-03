@@ -1,4 +1,5 @@
 def remove_duplicates(head: 'Node') -> 'Node':
+    """Removes duplicate nodes from a linked list while modifying the list in place."""
     if head is None:
         return None
 
