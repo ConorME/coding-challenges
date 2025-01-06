@@ -1,6 +1,7 @@
 import time
 from quicksort import quicksort
 from quicksort2 import quicksort2
+from quicksort3 import quicksort3
 from quicksort_golf import q
 from selectionsort import selectionsort
 from selectionsort_2 import selectionsort_2
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     sorting_algorithms = [
         ("Quicksort", quicksort),
         ("Quicksort2", quicksort2),
+        ("Quicksort3", quicksort3),
         ("Quicksort_golf", q),
         ("Selectionsort", selectionsort),
         ("Selectionsort_2", selectionsort_2),
