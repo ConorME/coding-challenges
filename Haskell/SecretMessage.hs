@@ -37,3 +37,48 @@ randomThreeLetterList n = sequence (replicate n randomThreeLetter)
 threeLetterEncoder :: [ThreeLetterAlphabet] -> [ThreeLetterAlphabet]
 threeLetterEncoder vals = map rot3 vals
    where rot3 = rotN 3
+
+rotEncoder :: String -> String
+rotEncoder text = rotString text
+
+xorBool :: Bool -> Bool -> Bool
+xorBool x y = (x || y) && (not (x && y))
+
+xorPair :: (Bool, Bool) -> Bool
+xorPair (x, y) = xorBool x y
+
+xor :: [Bool] -> [Bool] -> [Bool]
+xor α β = map xorPair (zip α β)
+
+type BitString = [Bool]
+
+intToBitString' :: Int -> BitString
+intToBitString' 0 = [False]
+intToBitString' 1 = [True]
+intToBitString' n = if (remainder == 0)
+		      then False : intToBitString' nextVal
+		      else True :  intToBitString' nextVal
+   where remainder = mod n 2
+         nextVal  = div n 2
+
+maxBits :: Int
+maxBits = length (intToBitString' maxBound)
+
+intToBitString :: Int -> BitString
+intToBitString n = leadingFalses ++ reversedBits
+   where reversedBits = reverse (intToBitString' n)
+         missingBits = maxBits - (length reversedBits)
+	 leadingFalses = take missingBits (cycle [False])
+
+charToBitString :: Char -> BitString 
+charToBitString char = intToBitString (fromEnum char)
+
+bitsToInt :: BitString -> Int
+bitsToInt bits = sum (map (\x -> 2^(snd x)) trueLocations)
+   where size = length bits
+         indices = [size -1, size-2 .. 0]
+         trueLocations = filter (\x -> fst x == True) (zip bits indices)
+
+bitsToChar :: BitString -> Char
+bitsToChar bits = toEnum (bitsToInt bits)
+
