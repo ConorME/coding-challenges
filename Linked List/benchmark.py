@@ -1,4 +1,5 @@
 import timeit
+from partition import partition
 from remove_kth import remove_kth
 from remove_middle import remove_middle
 from kth_last import kth_last_two_pointer, kth_last_length
@@ -8,6 +9,7 @@ from linked_list import generate_linked_list
 def benchmark_functions(test_size, k, iterations=1000):
     head = generate_linked_list(test_size)
     functions = {
+        "Partition": lambda: partition(head, k),
         "Remove Middle": lambda: remove_middle(head),
         "Remove Kth": lambda: remove_kth(head, k),
         "Kth Last - Two Pointer": lambda: kth_last_two_pointer(head, k),
