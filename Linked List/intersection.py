@@ -1,3 +1,5 @@
+from linked_list import Node
+
 def intersection(l1: Node, l2: Node):
     seen = set()
     
