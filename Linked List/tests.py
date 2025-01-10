@@ -2,6 +2,7 @@ import unittest
 from linked_list import Node
 from partition import partition
 from intersection import intersection
+from loop_detection import loop_dections
 
 def create_linked_list(values):
     if not values:
@@ -58,12 +59,12 @@ class TestIntersectionFunction(unittest.TestCase):
         self.common.next = Node(8)
         
         self.l1 = create_linked_list([3, 1, 5])
-        self.l1.next.next.next = self.common  # Intersecting here
+        self.l1.next.next.next = self.common
 
         self.l2 = create_linked_list([2, 4])
-        self.l2.next.next = self.common  # Intersecting here
+        self.l2.next.next = self.common
 
-        self.l3 = create_linked_list([9, 10])  # No intersection
+        self.l3 = create_linked_list([9, 10]) 
 
     def test_intersection_exists(self):
         result = intersection(self.l1, self.l2)
@@ -85,5 +86,44 @@ class TestIntersectionFunction(unittest.TestCase):
         result = intersection(self.common, self.l2)
         self.assertEqual(result, self.common)
 
+class TestLoopDetectionFunction(unittest.TestCase):
+    def test_cycle_exists(self):
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        node4 = Node(4)
+
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node2
+
+        self.assertTrue(loop_dection(node1))
+
+    def test_no_cycle(self):
+        head = create_linked_list([1, 2, 3, 4, 5])
+        self.assertFalse(loop_dection(head))
+
+    def test_cycle_at_head(self):
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+
+        node1.next = node2
+        node2.next = node3
+        node3.next = node1
+
+        self.assertTrue(loop_dection(node1))
+
+    def test_single_node_no_cycle(self):
+        node = Node(1)
+        self.assertFalse(loop_dection(node))
+
+    def test_single_node_with_cycle(self):
+        node = Node(1)
+        node.next = node 
+        self.assertTrue(loop_dection(node))
+
 if __name__ == "__main__":
     unittest.main()
+   unittest.main()
