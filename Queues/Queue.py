@@ -25,19 +25,16 @@ class Queue:
     def dequeue(self):
         if self.front is None:
             raise EmptyQueueError("dequeue used on empty queue")
-        item = self.front.data
-        self.front = self.front.next
-        if self.front is None:
-            self.rear = None  # Reset rear if the queue becomes empty
-        return item
         
     def peek(self):
         if self.front is None:
-            raise EmptyQueueError("peek used on empty queue")
-        return self.front.data
+            raise EmptyQueueError("Peek used on empty queue")
+        else:
+            return self.front.data
         
     def is_empty(self):
-        return self.front is None
+
+
 
     def __repr__(self) -> str:
         elements = []
