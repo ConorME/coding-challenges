@@ -26,21 +26,34 @@ def sort_stack(stack: Stack):
 
     return stack
 
-class StackSort(Stack):
+class StackSort:
     def __init__(self):
-        super().__init__()
+        self.stack = Stack()
 
     def push(self, item):
-        if super().is_empty() or super().peek() >= item:
-            super().push(item)
+        if self.stack.is_empty() or self.stack.peek() >= item:
+            self.stack.push(item)
         else:
             temp = Stack()
-            while not super().is_empty() and super().peek() < item:
-                temp.push(super().pop())
+            while not self.stack.is_empty() and self.stack.peek() < item:
+                temp.push(self.stack.pop())
 
             # Push our value onto its correct location in the Stack
-            super().push(item)
+            self.stack.push(item)
 
             while not temp.is_empty():
-                super().push(temp.pop())
+                self.stack.push(temp.pop())
+
+    def pop(self):
+        return self.stack.pop()
+
+    def peek(self):
+        return self.stack.peek()
+
+    def is_empty(self):
+        return self.stack.is_empty()
+
+    def __repr__(self):
+        return f"StackSort(stack={repr(self.stack)})"
+
 
