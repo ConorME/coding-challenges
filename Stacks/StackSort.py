@@ -7,7 +7,7 @@ def sort_stack(stack: Stack):
     higher = Stack()
     lower = Stack()
 
-    while stack:
+    while not stack.is_empty():
         if stack.peek() >= pivot:
             higher.push(stack.pop())
         else:
@@ -16,12 +16,12 @@ def sort_stack(stack: Stack):
     sort_stack(higher)
     sort_stack(lower)
 
-    while higher:
+    while not higher.is_empty():
         stack.push(higher.pop())
 
     stack.push(pivot)
 
-    while lower:
+    while not lower.is_empty():
         stack.push(lower.pop())
 
     return stack
@@ -30,17 +30,17 @@ class StackSort(Stack):
     def __init__(self):
         super().__init__()
 
-    def push(item):
-        if self.is_empty() or self.peek() >= item:
-            self.push(item)
+    def push(self, item):
+        if super().is_empty() or super().peek() >= item:
+            super().push(item)
         else:
             temp = Stack()
-            while self.peek() < item:
-                temp.push(self.pop())
+            while not super().is_empty() and super().peek() < item:
+                temp.push(super().pop())
 
             # Push our value onto its correct location in the Stack
-            self.push(item)
+            super().push(item)
 
-            while temp:
-                self.push(temp.pop())
+            while not temp.is_empty():
+                super().push(temp.pop())
 
