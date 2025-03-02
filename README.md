@@ -1,1 +1,1 @@
-Algorithms and Data Structure daily coding challenges.
+Algorithms and Data Structure daily coding challenges.Various sources used for coding challenges. Most of these are from either Algorithm Design Manual by Steven Skiena or Cracking the Coding interview by Gayle Laakmann McDowell.
