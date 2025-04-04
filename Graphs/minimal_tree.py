@@ -39,7 +39,6 @@ class MinimalTreeTest(unittest.TestCase):
         self.assertIsNone(root.right)
 
     def test_small(self):
-        # For [0, 1]: mid = (0+1)//2 = 0, so root should be 0 with right child 1.
         root = minimal_tree(self.arr_small, 0, len(self.arr_small) - 1)
         self.assertIsNotNone(root)
         self.assertEqual(root.value, 0)
@@ -48,7 +47,6 @@ class MinimalTreeTest(unittest.TestCase):
         self.assertEqual(root.right.value, 1)
 
     def test_small_odd(self):
-        # For [0, 1, 2]: mid = (0+2)//2 = 1, so root should be 1, with left 0 and right 2.
         root = minimal_tree(self.arr_small_odd, 0, len(self.arr_small_odd) - 1)
         self.assertIsNotNone(root)
         self.assertEqual(root.value, 1)
@@ -58,13 +56,10 @@ class MinimalTreeTest(unittest.TestCase):
         self.assertEqual(root.right.value, 2)
 
     def test_odd(self):
-        # For an odd-length array, an in-order traversal of the minimal tree
-        # should yield the original array.
         root = minimal_tree(self.arr_odd, 0, len(self.arr_odd) - 1)
         self.assertEqual(self.inorder(root), self.arr_odd)
 
     def test_even(self):
-        # For an even-length array, an in-order traversal should still yield the original array.
         root = minimal_tree(self.arr_even, 0, len(self.arr_even) - 1)
         self.assertEqual(self.inorder(root), self.arr_even)
 
